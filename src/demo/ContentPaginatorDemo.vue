@@ -71,6 +71,7 @@
     </ul>
 
     <!-- How to Use -->
+    <section class="demo-section">
     <button
       class="section-toggle"
       :aria-expanded="showHowToUse"
@@ -233,6 +234,7 @@ watch(currentPageIndex, () => {
 }</code></pre>
     </div>
     </div>
+    </section>
   </div>
 </template>
 
