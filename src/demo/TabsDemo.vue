@@ -17,7 +17,7 @@
 
     <!-- Example 2: Tabs Below Panel -->
     <h3>Example 2: Tabs Below Content</h3>
-    <TabsContainer :tabs="sampleTabs" default-tab-id="features">
+    <TabsContainer :tabs="sampleTabsExample2" default-tab-id="example2-features">
       <div class="tabs-layout-below">
         <TabPanels />
         <TabsBar aria-label="Sample tabs" />
@@ -234,24 +234,50 @@ import { TabsContainer, TabsBar, TabPanels, type TabItem } from '../components'
 
 const sampleTabs: TabItem[] = [
   {
-    id: 'overview',
+    id: 'example1-overview',
     label: 'Overview',
     content:
       'This is the overview tab. Tabs can be positioned above or below the content area. Use arrow keys to navigate between tabs.'
   },
   {
-    id: 'features',
+    id: 'example1-features',
     label: 'Features',
     content:
       'Features tab content. The component uses ARIA attributes and semantic HTML for full accessibility and screen reader support.'
   },
   {
-    id: 'settings',
+    id: 'example1-settings',
     label: 'Settings',
     content: 'Settings tab content. Keyboard navigation includes Home, End, and arrow keys.'
   },
   {
-    id: 'disabled',
+    id: 'example1-disabled',
+    label: 'Disabled Tab',
+    content: 'This tab cannot be selected',
+    disabled: true
+  }
+]
+
+const sampleTabsExample2: TabItem[] = [
+  {
+    id: 'example2-overview',
+    label: 'Overview',
+    content:
+      'This is the overview tab. Tabs can be positioned above or below the content area. Use arrow keys to navigate between tabs.'
+  },
+  {
+    id: 'example2-features',
+    label: 'Features',
+    content:
+      'Features tab content. The component uses ARIA attributes and semantic HTML for full accessibility and screen reader support.'
+  },
+  {
+    id: 'example2-settings',
+    label: 'Settings',
+    content: 'Settings tab content. Keyboard navigation includes Home, End, and arrow keys.'
+  },
+  {
+    id: 'example2-disabled',
     label: 'Disabled Tab',
     content: 'This tab cannot be selected',
     disabled: true
