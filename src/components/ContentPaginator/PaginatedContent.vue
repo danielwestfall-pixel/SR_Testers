@@ -4,9 +4,9 @@
       {{ srAnnouncement }}
     </div>
     <div class="page-container">
-      <div class="page-content" :aria-label="contentAriaLabel">
+      <div ref="pageContentRef" class="page-content" :aria-label="contentAriaLabel" tabindex="-1">
         <slot :page="currentPage">
-          <h2 ref="pageHeadingRef" tabindex="-1">{{ currentPage.title }}</h2>
+          <h2>{{ currentPage.title }}</h2>
           <p>{{ currentPage.content }}</p>
         </slot>
       </div>
@@ -37,7 +37,7 @@ const pages = computed(() => paginatorState.pages)
 const currentPageIndex = computed(() => paginatorState.currentPageIndex.value)
 const currentPage = computed(() => pages.value[currentPageIndex.value])
 
-const pageHeadingRef = ref<HTMLHeadingElement | null>(null)
+const pageContentRef = ref<HTMLDivElement | null>(null)
 
 const srAnnouncement = computed(() => {
   return `Page ${currentPageIndex.value + 1} of ${pages.value.length}: ${currentPage.value.title}`
@@ -47,11 +47,11 @@ const contentAriaLabel = computed(() => {
   return `Page content: ${currentPage.value.title} (${currentPageIndex.value + 1} of ${pages.value.length})`
 })
 
-// Focus the page heading when page changes
+// Focus the page content when page changes
 watch(currentPageIndex, () => {
   // Use setTimeout to ensure DOM has updated
   setTimeout(() => {
-    pageHeadingRef.value?.focus()
+    pageContentRef.value?.focus()
   }, 0)
 })
 </script>
@@ -81,6 +81,13 @@ watch(currentPageIndex, () => {
   justify-content: center;
   padding: 40px;
   animation: fadeIn 0.3s ease-in;
+  border-radius: 4px;
+  outline: none;
+}
+
+.page-content:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 4px;
 }
 
 @keyframes fadeIn {
@@ -97,13 +104,6 @@ watch(currentPageIndex, () => {
   color: #0066cc;
   font-size: 32px;
   text-align: center;
-  outline: none;
-}
-
-.page-content h2:focus-visible {
-  outline: 2px solid #0066cc;
-  outline-offset: 4px;
-  border-radius: 4px;
 }
 
 .page-content p {

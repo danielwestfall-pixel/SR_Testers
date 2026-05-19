@@ -202,30 +202,27 @@
   {{ srAnnouncement }}
 &lt;/div&gt;
 
-// Page content with focusable heading
-&lt;div class="page-content" :aria-label="contentAriaLabel"&gt;
-  &lt;h2 ref="pageHeadingRef" tabindex="-1"&gt;
-    {{ currentPage.title }}
-  &lt;/h2&gt;
-  &lt;p&gt;{{ currentPage.content }}&lt;/p&gt;
+// Page content container with focus management
+&lt;div ref="pageContentRef" class="page-content" 
+     :aria-label="contentAriaLabel" tabindex="-1"&gt;
+  &lt;slot :page="currentPage"&gt;
+    &lt;h2&gt;{{ currentPage.title }}&lt;/h2&gt;
+    &lt;p&gt;{{ currentPage.content }}&lt;/p&gt;
+  &lt;/slot&gt;
 &lt;/div&gt;
 
-// Watch page changes and focus the heading
+// Watch page changes and focus the content area
 watch(currentPageIndex, () => {
   setTimeout(() => {
-    pageHeadingRef.value?.focus()
+    pageContentRef.value?.focus()
   }, 0)
 })
 
-// Navigation buttons
-&lt;button
-  class="arrow-button"
-  :disabled="!canGoNext()"
-  aria-label="Next page"
-  @click="goNext"
-&gt;
-  &lt;span aria-hidden="true"&gt;›&lt;/span&gt;
-&lt;/button&gt;</code></pre>
+// CSS focus indicator on page content
+.page-content:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 4px;
+}</code></pre>
     </div>
   </div>
 </template>
