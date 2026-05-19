@@ -109,9 +109,17 @@
     </ul>
 
     <!-- How to Use -->
-    <h3>How to Use</h3>
+    <button
+      class="section-toggle"
+      :aria-expanded="showHowToUse"
+      @click="showHowToUse = !showHowToUse"
+    >
+      <span class="toggle-icon">{{ showHowToUse ? '▼' : '▶' }}</span>
+      How to Use
+    </button>
 
-    <h4>1. Import</h4>
+    <div v-if="showHowToUse" class="collapsible-content">
+      <h4>1. Import</h4>
     <div class="code-block" v-pre>
       <pre><code>import { TabsContainer, TabsBar, TabPanels, type TabItem } from './components'</code></pre>
     </div>
@@ -260,7 +268,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { TabsContainer, TabsBar, TabPanels, type TabItem } from '../components'
+
+const showHowToUse = ref(false)
 
 const sampleTabs: TabItem[] = [
   {
@@ -405,6 +416,54 @@ li {
 }
 
 /* Props table styling */
+.section-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  font-size: 20px;
+  font-weight: bold;
+  color: #0066cc;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.section-toggle:hover {
+  text-decoration: underline;
+}
+
+.section-toggle:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.toggle-icon {
+  display: inline-block;
+  width: 16px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.collapsible-content {
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 2000px;
+  }
+}
+
 .props-table {
   width: 100%;
   border-collapse: collapse;

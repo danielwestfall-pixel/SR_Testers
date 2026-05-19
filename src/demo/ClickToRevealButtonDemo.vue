@@ -45,9 +45,17 @@
     </section>
 
     <section class="demo-section">
-      <h2>How to Use</h2>
+      <button
+        class="section-toggle"
+        :aria-expanded="showHowToUse"
+        @click="showHowToUse = !showHowToUse"
+      >
+        <span class="toggle-icon">{{ showHowToUse ? '▼' : '▶' }}</span>
+        How to Use
+      </button>
       
-      <h3>Import</h3>
+      <div v-if="showHowToUse" class="collapsible-content">
+        <h3>Import</h3>
       <div class="code-block">
         <pre><code>import {{ ClickToRevealButton }} from './components'</code></pre>
       </div>
@@ -148,12 +156,14 @@ const toggleRevealed = () => {
   {{ revealContent }}
 &lt;/div&gt;</code></pre>
       </div>
-    </section>
-  </div>
+      </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { ClickToRevealButton } from '../components'
+
+const showHowToUse = ref(false)
 </script>
 
 <style scoped>
@@ -248,6 +258,54 @@ h3 {
   background-color: #f9f9f9;
   border-left: 4px solid #0066cc;
   border-radius: 4px;
+}
+
+.section-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  font-size: 24px;
+  font-weight: bold;
+  color: #0066cc;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.section-toggle:hover {
+  text-decoration: underline;
+}
+
+.section-toggle:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.toggle-icon {
+  display: inline-block;
+  width: 16px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.collapsible-content {
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 2000px;
+  }
 }
 
 .demo-section ul {
