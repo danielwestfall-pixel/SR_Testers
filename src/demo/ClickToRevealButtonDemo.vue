@@ -43,6 +43,112 @@
         <li><strong>Color Contrast:</strong> Meets WCAG AA standards</li>
       </ul>
     </section>
+
+    <section class="demo-section">
+      <h2>How to Use</h2>
+      
+      <h3>Import</h3>
+      <div class="code-block">
+        <pre><code>import {{ ClickToRevealButton }} from './components'</code></pre>
+      </div>
+
+      <h3>Basic Usage</h3>
+      <div class="code-block">
+        <pre><code>&lt;template&gt;
+  &lt;ClickToRevealButton
+    revealContent="The villain was the friend all along!"
+  /&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import {{ ClickToRevealButton }} from './components'
+&lt;/script&gt;</code></pre>
+      </div>
+
+      <h3>With Custom Text</h3>
+      <div class="code-block">
+        <pre><code>&lt;ClickToRevealButton
+  revealContent="The cake is a lie"
+  revealText="Show me the truth"
+  hideText="Hide the truth"
+/&gt;</code></pre>
+      </div>
+
+      <h3>Props</h3>
+      <table class="props-table">
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>revealContent</code></td>
+            <td>string</td>
+            <td>Required</td>
+            <td>The content text to reveal when button is clicked</td>
+          </tr>
+          <tr>
+            <td><code>revealText</code></td>
+            <td>string</td>
+            <td>"Click to reveal"</td>
+            <td>Button label text before content is revealed</td>
+          </tr>
+          <tr>
+            <td><code>hideText</code></td>
+            <td>string</td>
+            <td>"Click to hide"</td>
+            <td>Used in aria-label when content is revealed</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>How It Works</h3>
+      <ul>
+        <li><strong>Initial State:</strong> Button shows "Click to reveal" in blue</li>
+        <li><strong>After Click:</strong> Button shows revealed content in gold/orange</li>
+        <li><strong>Screen Reader:</strong> Announces "Content revealed: [content]" in live region</li>
+        <li><strong>Keyboard:</strong> Tab to focus, Enter or Space to toggle</li>
+        <li><strong>State:</strong> Content is only in DOM when revealed (not accessible until clicked)</li>
+      </ul>
+
+      <h3>State Management</h3>
+      <div class="code-block">
+        <pre><code>// Component manages state internally
+const isRevealed = ref(false)
+
+// Toggle on click
+const toggleRevealed = () => {
+  isRevealed.value = !isRevealed.value
+}</code></pre>
+      </div>
+
+      <h3>Accessibility Implementation</h3>
+      <div class="code-block">
+        <pre><code>&lt;button
+  :aria-expanded="isRevealed"
+  :aria-label="ariaLabel"
+  :aria-controls="isRevealed ? 'reveal-content' : undefined"
+  @click="toggleRevealed"
+&gt;
+  &lt;span v-if="!isRevealed"&gt;Click to reveal&lt;/span&gt;
+  &lt;span v-if="isRevealed"&gt;{{ revealContent }}&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- Screen reader announcement --&gt;
+&lt;div aria-live="polite" aria-atomic="true" class="sr-only"&gt;
+  {{ srAnnouncement }}
+&lt;/div&gt;
+
+&lt;!-- Content reference (only in DOM when revealed) --&gt;
+&lt;div v-if="isRevealed" id="reveal-content" class="sr-only"&gt;
+  {{ revealContent }}
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -72,6 +178,68 @@ h2 {
   font-size: 1.25rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
+}
+
+h3 {
+  color: #666;
+  font-size: 1.05rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.code-block {
+  background-color: #2d2d2d;
+  color: #f8f8f2;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1rem 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.code-block pre {
+  margin: 0;
+  font-family: inherit;
+}
+
+.code-block code {
+  color: #f8f8f2;
+}
+
+.props-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background-color: white;
+}
+
+.props-table th,
+.props-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+}
+
+.props-table th {
+  background-color: #f0f8ff;
+  color: #0066cc;
+  font-weight: 600;
+}
+
+.props-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.props-table code {
+  background-color: #f0f8ff;
+  padding: 0.2rem 0.4rem;
+  border-radius: 2px;
+  color: #0066cc;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
 }
 
 .demo-section {
