@@ -230,7 +230,7 @@
 </template>
 
 <script setup lang="ts">
-import { TabsContainer, TabsBar, TabPanels, type TabItem } from '../../components'
+import { TabsContainer, TabsBar, TabPanels, type TabItem } from '../components'
 
 const sampleTabs: TabItem[] = [
   {
