@@ -325,7 +325,7 @@ li {
 
 .tabs-layout-below {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   margin: 20px 0;
   border-radius: 4px;
   overflow: hidden;
