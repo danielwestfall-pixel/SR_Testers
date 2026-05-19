@@ -49,13 +49,24 @@
         preventing out-of-bounds navigation
       </li>
       <li>
-        <strong>Visual Feedback:</strong> Current page indicator shows position in the sequence
+        <strong>Focus Management:</strong> When pagination occurs, focus automatically moves to
+        the page heading so users are positioned to read new content
       </li>
       <li>
-        <strong>Focus Management:</strong> Clear focus indicators on navigation buttons
+        <strong>Screen Reader Announcements:</strong> Page changes are announced via aria-live
+        with full context (e.g., "Page 2 of 5: Key Features")
       </li>
       <li>
-        <strong>Semantic Structure:</strong> Proper button semantics with meaningful labels
+        <strong>Page Content Label:</strong> The content area has an aria-label describing the
+        current page
+      </li>
+      <li>
+        <strong>Visual Feedback:</strong> Current page indicator shows position in the sequence;
+        page heading has visible focus indicator
+      </li>
+      <li>
+        <strong>Semantic Structure:</strong> Proper button semantics, heading hierarchy, and
+        meaningful labels throughout
       </li>
     </ul>
 
@@ -186,26 +197,35 @@
     <!-- Accessibility Implementation -->
     <h4>Accessibility Implementation</h4>
     <div class="code-block" v-pre>
-      <pre><code>// Navigation buttons structure
-&lt;button
-  class="arrow-button"
-  :disabled="!canGoPrev()"
-  aria-label="Previous page"
-  @click="goPrev"
-&gt;
-  &lt;span aria-hidden="true"&gt;‹&lt;/span&gt;
-&lt;/button&gt;
-
-// Page content with semantic structure
-&lt;div class="page-content"&gt;
-  &lt;h2&gt;{{ page.title }}&lt;/h2&gt;
-  &lt;p&gt;{{ page.content }}&lt;/p&gt;
+      <pre><code>// Screen reader announcement region
+&lt;div aria-live="polite" aria-atomic="true" class="sr-only"&gt;
+  {{ srAnnouncement }}
 &lt;/div&gt;
 
-// Page counter for context
-&lt;div class="page-counter"&gt;
-  {{ currentPage + 1 }} / {{ totalPages }}
-&lt;/div&gt;</code></pre>
+// Page content with focusable heading
+&lt;div class="page-content" :aria-label="contentAriaLabel"&gt;
+  &lt;h2 ref="pageHeadingRef" tabindex="-1"&gt;
+    {{ currentPage.title }}
+  &lt;/h2&gt;
+  &lt;p&gt;{{ currentPage.content }}&lt;/p&gt;
+&lt;/div&gt;
+
+// Watch page changes and focus the heading
+watch(currentPageIndex, () => {
+  setTimeout(() => {
+    pageHeadingRef.value?.focus()
+  }, 0)
+})
+
+// Navigation buttons
+&lt;button
+  class="arrow-button"
+  :disabled="!canGoNext()"
+  aria-label="Next page"
+  @click="goNext"
+&gt;
+  &lt;span aria-hidden="true"&gt;›&lt;/span&gt;
+&lt;/button&gt;</code></pre>
     </div>
   </div>
 </template>
