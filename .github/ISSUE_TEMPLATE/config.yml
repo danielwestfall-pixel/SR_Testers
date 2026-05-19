@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions or Discussions
+    url: https://github.com/danielwestfall-pixel/SR_Testers/discussions
+    about: "Ask questions, discuss ideas, and share knowledge about screen reader testing"
+  - name: WCAG Guidelines
+    url: https://www.w3.org/WAI/WCAG21/quickref/
+    about: "Reference for WCAG 2.1 accessibility standards"
+  - name: ARIA Authoring Practices
+    url: https://www.w3.org/WAI/ARIA/apg/
+    about: "Official guide for implementing ARIA attributes correctly"
