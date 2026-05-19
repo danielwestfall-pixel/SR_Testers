@@ -173,7 +173,6 @@
         </tr>
       </tbody>
     </table>
-    </div>
 
     <!-- How It Works -->
     <h4>How It Works</h4>
@@ -232,6 +231,7 @@ watch(currentPageIndex, () => {
   outline: 2px solid #0066cc;
   outline-offset: 4px;
 }</code></pre>
+    </div>
     </div>
   </div>
 </template>

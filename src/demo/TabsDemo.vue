@@ -208,7 +208,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
 
     <!-- How It Works -->
     <h4>How It Works</h4>
@@ -264,6 +263,7 @@
 &gt;
   {{ tab.content }}
 &lt;/div&gt;</code></pre>
+    </div>
     </div>
   </div>
 </template>
