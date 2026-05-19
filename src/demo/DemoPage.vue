@@ -8,6 +8,7 @@
     <nav class="demo-nav">
       <ul>
         <li><a href="#click-to-reveal">Click to Reveal</a></li>
+        <li><a href="#tabs">Tabs</a></li>
       </ul>
     </nav>
 
@@ -15,12 +16,16 @@
       <section id="click-to-reveal" class="component-demo">
         <ClickToRevealButtonDemo />
       </section>
+      <section id="tabs" class="component-demo">
+        <TabsDemo />
+      </section>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
 import ClickToRevealButtonDemo from './ClickToRevealButtonDemo.vue'
+import TabsDemo from './TabsDemo.vue'
 </script>
 
 <style scoped>
