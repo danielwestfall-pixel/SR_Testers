@@ -9,6 +9,7 @@
       <ul>
         <li><a href="#click-to-reveal">Click to Reveal</a></li>
         <li><a href="#tabs">Tabs</a></li>
+        <li><a href="#paginator">Content Paginator</a></li>
       </ul>
     </nav>
 
@@ -19,6 +20,9 @@
       <section id="tabs" class="component-demo">
         <TabsDemo />
       </section>
+      <section id="paginator" class="component-demo">
+        <ContentPaginatorDemo />
+      </section>
     </main>
   </div>
 </template>
@@ -26,6 +30,7 @@
 <script setup lang="ts">
 import ClickToRevealButtonDemo from './ClickToRevealButtonDemo.vue'
 import TabsDemo from './TabsDemo.vue'
+import ContentPaginatorDemo from './ContentPaginatorDemo.vue'
 </script>
 
 <style scoped>
