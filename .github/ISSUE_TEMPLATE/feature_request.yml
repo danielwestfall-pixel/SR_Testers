@@ -1,0 +1,84 @@
+name: Feature Request
+description: Suggest a new component to add to the library
+title: "[FEATURE] "
+labels: ["enhancement"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Please describe the component you'd like to see.
+
+  - type: textarea
+    id: component_name
+    attributes:
+      label: Component Name
+      description: What should the component be called?
+      placeholder: "Example: Toggle Switch, Modal Dialog, Dropdown Menu"
+      validations:
+        required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the component and its purpose
+      placeholder: What does this component do? What problem does it solve?
+      validations:
+        required: true
+
+  - type: textarea
+    id: use_cases
+    attributes:
+      label: Use Cases
+      description: When would this component be useful?
+      placeholder: |
+        Example:
+        - For toggling feature flags
+        - For on/off states in forms
+        - For accessibility testing
+      validations:
+        required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Accessibility Requirements
+      description: What accessibility features should this component have?
+      placeholder: |
+        Example:
+        - Keyboard navigation support
+        - Screen reader announcements
+        - ARIA attributes for state
+        - Focus indicators
+      validations:
+        required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples
+      description: Links or descriptions of similar components
+      placeholder: |
+        Example:
+        - WAI-ARIA toggle button: https://www.w3.org/...
+        - Similar component: https://...
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other relevant information
+      placeholder: Screenshots, sketches, or references?
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Component is not already in the library
+          required: false
+        - label: Component has clear accessibility requirements
+          required: false
+        - label: This would be useful for screen reader testing
+          required: false

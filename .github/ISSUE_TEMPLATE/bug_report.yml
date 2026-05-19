@@ -1,0 +1,105 @@
+name: Bug Report
+description: Report an issue with an existing component
+title: "[BUG] "
+labels: ["bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please provide as much detail as possible.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which component is affected?
+      options:
+        - ClickToRevealButton
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: Where does this occur?
+      options:
+        - Development (npm run dev)
+        - Production build (npm run build)
+        - Browser only (please specify)
+    validations:
+      required: true
+
+  - type: textarea
+    id: browser_info
+    attributes:
+      label: Browser & Environment
+      description: Browser, OS, screen reader if applicable
+      placeholder: |
+        Example:
+        - Browser: Chrome 120
+        - OS: Windows 11
+        - Screen Reader: NVDA 2024.1
+      validations:
+        required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Clear description of the issue
+      placeholder: What is the problem?
+      validations:
+        required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. 
+        2. 
+        3.
+      validations:
+        required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen?
+      placeholder: What is the expected behavior?
+      validations:
+        required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happens?
+      placeholder: What is the actual behavior?
+      validations:
+        required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: |
+        Anything else? Screenshots, videos, error messages?
+      placeholder: Add any other context here
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I've checked existing issues
+          required: false
+        - label: Issue is reproducible
+          required: false
+        - label: This is not a usage question
+          required: false

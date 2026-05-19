@@ -2,6 +2,8 @@
 
 A fully accessible Vue 3 component that reveals/hides content with comprehensive screen reader support and keyboard navigation.
 
+**Repository**: [github.com/danielwestfall-pixel/SR_Testers](https://github.com/danielwestfall-pixel/SR_Testers)
+
 ## Features
 
 ### ✅ Accessibility
