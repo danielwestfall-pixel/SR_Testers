@@ -82,21 +82,21 @@
     <h3>How to Use</h3>
 
     <h4>1. Import</h4>
-    <div class="code-block">
-      <pre><code>import {{ TabsContainer, TabsBar, TabPanels, type TabItem }} from './components'</code></pre>
+    <div class="code-block" v-pre>
+      <pre><code>import { TabsContainer, TabsBar, TabPanels, type TabItem } from './components'</code></pre>
     </div>
 
     <h4>2. Define Tab Data</h4>
-    <div class="code-block">
+    <div class="code-block" v-pre>
       <pre><code>const tabs: TabItem[] = [
-  {{ id: 'overview', label: 'Overview', content: 'Overview content...' }},
-  {{ id: 'features', label: 'Features', content: 'Features content...' }},
-  {{ id: 'settings', label: 'Settings', content: 'Settings content...', disabled: false }}
+  { id: 'overview', label: 'Overview', content: 'Overview content...' },
+  { id: 'features', label: 'Features', content: 'Features content...' },
+  { id: 'settings', label: 'Settings', content: 'Settings content...', disabled: false }
 ]</code></pre>
     </div>
 
     <h4>3. Basic Usage - Tabs Above</h4>
-    <div class="code-block">
+    <div class="code-block" v-pre>
       <pre><code>&lt;TabsContainer :tabs="tabs"&gt;
   &lt;div class="tabs-layout-above"&gt;
     &lt;TabsBar aria-label="Main tabs" /&gt;
@@ -106,7 +106,7 @@
     </div>
 
     <h4>4. Tabs Below Content</h4>
-    <div class="code-block">
+    <div class="code-block" v-pre>
       <pre><code>&lt;TabsContainer :tabs="tabs"&gt;
   &lt;div class="tabs-layout-below"&gt;
     &lt;TabPanels /&gt;
@@ -116,9 +116,9 @@
     </div>
 
     <h4>5. Custom Content with Slots</h4>
-    <div class="code-block">
+    <div class="code-block" v-pre>
       <pre><code>&lt;TabPanels&gt;
-  &lt;template #panel-custom="{{ tab }}"&gt;
+  &lt;template #panel-custom="{ tab }"&gt;
     &lt;div&gt;Custom HTML for {{ tab.label }}&lt;/div&gt;
   &lt;/template&gt;
 &lt;/TabPanels&gt;</code></pre>
@@ -202,7 +202,7 @@
 
     <!-- Accessibility Implementation -->
     <h4>Accessibility Implementation</h4>
-    <div class="code-block">
+    <div class="code-block" v-pre>
       <pre><code>// TabsBar element structure
 &lt;div class="tabs-bar" role="tablist" aria-label="Tabs"&gt;
   &lt;button
