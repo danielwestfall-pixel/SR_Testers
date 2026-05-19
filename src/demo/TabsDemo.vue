@@ -190,24 +190,25 @@
     </table>
 
     <h4>TabsBar Props</h4>
-    <table class="props-table">
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Type</th>
-          <th>Default</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>ariaLabel</code></td>
-          <td>string</td>
-          <td>"Tabs"</td>
-          <td>Accessible label for the tab list</td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="props-table">
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ariaLabel</code></td>
+            <td>string</td>
+            <td>"Tabs"</td>
+            <td>Accessible label for the tab list</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <!-- How It Works -->
     <h4>How It Works</h4>

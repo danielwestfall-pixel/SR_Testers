@@ -156,7 +156,9 @@ const toggleRevealed = () => {
   {{ revealContent }}
 &lt;/div&gt;</code></pre>
       </div>
-      </div>
+    </div>
+    </section>
+  </div>
 </template>
 
 <script setup lang="ts">

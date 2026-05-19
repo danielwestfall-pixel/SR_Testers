@@ -173,6 +173,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
 
     <!-- How It Works -->
     <h4>How It Works</h4>
