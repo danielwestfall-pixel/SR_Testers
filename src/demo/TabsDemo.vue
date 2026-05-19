@@ -11,7 +11,39 @@
     <TabsContainer :tabs="sampleTabs">
       <div class="tabs-layout-above">
         <TabsBar aria-label="Sample tabs" />
-        <TabPanels />
+        <TabPanels>
+          <template #panel-example1-overview>
+            <div class="tab-content-interactive">
+              <p>This is the overview tab. Use Tab to navigate through the interactive elements below.</p>
+              <button class="demo-button">Click me</button>
+              <a href="#" class="demo-link">Test link</a>
+              <input type="text" placeholder="Test input field" class="demo-input" />
+            </div>
+          </template>
+          <template #panel-example1-features>
+            <div class="tab-content-interactive">
+              <p>Features tab with interactive content for keyboard testing.</p>
+              <button class="demo-button">Action Button</button>
+              <button class="demo-button">Another Button</button>
+              <a href="#" class="demo-link">Documentation</a>
+            </div>
+          </template>
+          <template #panel-example1-settings>
+            <div class="tab-content-interactive">
+              <p>Settings tab - test form controls with keyboard.</p>
+              <label>
+                <input type="checkbox" /> Enable feature
+              </label>
+              <label>
+                <input type="radio" name="option" /> Option 1
+              </label>
+              <label>
+                <input type="radio" name="option" /> Option 2
+              </label>
+              <button class="demo-button">Save Settings</button>
+            </div>
+          </template>
+        </TabPanels>
       </div>
     </TabsContainer>
 
@@ -20,33 +52,31 @@
     <TabsContainer :tabs="sampleTabsExample2" default-tab-id="example2-features">
       <div class="tabs-layout-below">
         <TabsBar aria-label="Sample tabs" />
-        <TabPanels />
-      </div>
-    </TabsContainer>
-
-    <!-- Example 3: Custom Content with Slots -->
-    <h3>Example 3: Custom Panel Content</h3>
-    <TabsContainer :tabs="customTabs">
-      <div class="tabs-layout-above">
-        <TabsBar aria-label="Custom tabs" />
         <TabPanels>
-          <template #panel-icons="{ tab }">
-            <div class="custom-content">
-              <p>{{ tab.content }}</p>
-              <div class="icon-grid">
-                <span v-for="icon in ['🎨', '⚙️', '🔧']" :key="icon" class="icon">
-                  {{ icon }}
-                </span>
-              </div>
+          <template #panel-example2-overview>
+            <div class="tab-content-interactive">
+              <p>Overview content with interactive elements.</p>
+              <button class="demo-button">Primary Button</button>
+              <input type="text" placeholder="Text input" class="demo-input" />
             </div>
           </template>
-          <template #panel-code="{ tab }">
-            <div class="custom-content">
-              <p>{{ tab.content }}</p>
-              <pre><code>&lt;TabsContainer :tabs="data"&gt;
-  &lt;TabsBar /&gt;
-  &lt;TabPanels /&gt;
-&lt;/TabsContainer&gt;</code></pre>
+          <template #panel-example2-features>
+            <div class="tab-content-interactive">
+              <p>Features tab - tabs are positioned below but keyboard access is optimized.</p>
+              <select class="demo-select">
+                <option>Select an option</option>
+                <option>Option A</option>
+                <option>Option B</option>
+              </select>
+              <button class="demo-button">Submit</button>
+            </div>
+          </template>
+          <template #panel-example2-settings>
+            <div class="tab-content-interactive">
+              <p>Settings with form elements for keyboard testing.</p>
+              <textarea class="demo-textarea" placeholder="Enter text here..."></textarea>
+              <button class="demo-button">Reset</button>
+              <a href="#" class="demo-link">Learn more</a>
             </div>
           </template>
         </TabPanels>
@@ -283,19 +313,6 @@ const sampleTabsExample2: TabItem[] = [
     disabled: true
   }
 ]
-
-const customTabs: TabItem[] = [
-  {
-    id: 'icons',
-    label: 'Visual',
-    content: 'This tab demonstrates custom slot content with icons'
-  },
-  {
-    id: 'code',
-    label: 'Code',
-    content: 'This tab shows code examples'
-  }
-]
 </script>
 
 <style scoped>
@@ -419,38 +436,104 @@ li {
   color: #666;
 }
 
-/* Custom content demo */
-.custom-content {
-  padding: 15px;
-}
-
-.icon-grid {
+/* Interactive content in tabs */
+.tab-content-interactive {
+  padding: 20px;
   display: flex;
+  flex-direction: column;
   gap: 15px;
-  margin-top: 15px;
 }
 
-.icon {
-  font-size: 32px;
-  cursor: pointer;
-  transition: transform 0.2s;
+.tab-content-interactive p {
+  margin: 0;
+  color: #555;
+  line-height: 1.6;
 }
 
-.icon:hover {
-  transform: scale(1.2);
-}
-
-.custom-content pre {
-  background-color: #f5f5f5;
-  padding: 10px;
+.demo-button {
+  padding: 10px 16px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
   border-radius: 4px;
-  overflow-x: auto;
-  margin: 10px 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  align-self: flex-start;
 }
 
-.custom-content code {
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  color: #333;
+.demo-button:hover {
+  background-color: #0052a3;
+}
+
+.demo-button:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+.demo-button:active {
+  background-color: #003d7a;
+}
+
+.demo-link {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+  align-self: flex-start;
+}
+
+.demo-link:hover {
+  text-decoration: underline;
+}
+
+.demo-link:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+.demo-input,
+.demo-select,
+.demo-textarea {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  max-width: 300px;
+}
+
+.demo-input:focus,
+.demo-select:focus,
+.demo-textarea:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+  border-color: #0066cc;
+}
+
+.demo-textarea {
+  min-height: 100px;
+  resize: vertical;
+  max-width: 100%;
+}
+
+.tab-content-interactive label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #555;
+  font-size: 14px;
+}
+
+.tab-content-interactive input[type="checkbox"],
+.tab-content-interactive input[type="radio"] {
+  cursor: pointer;
+}
+
+.tab-content-interactive input[type="checkbox"]:focus-visible,
+.tab-content-interactive input[type="radio"]:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
 }
 </style>
