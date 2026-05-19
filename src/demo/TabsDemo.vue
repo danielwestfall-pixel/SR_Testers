@@ -19,8 +19,8 @@
     <h3>Example 2: Tabs Below Content</h3>
     <TabsContainer :tabs="sampleTabsExample2" default-tab-id="example2-features">
       <div class="tabs-layout-below">
-        <TabPanels />
         <TabsBar aria-label="Sample tabs" />
+        <TabPanels />
       </div>
     </TabsContainer>
 
@@ -356,6 +356,14 @@ li {
   border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tabs-layout-below > :first-child {
+  order: 2;
+}
+
+.tabs-layout-below > :last-child {
+  order: 1;
 }
 
 /* Code block styling */
